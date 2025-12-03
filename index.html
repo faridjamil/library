@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Modern & Kekinian</title>
+    <style>
+/* RESET DASAR */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #007bff; /* Biru cerah, warna utama */
+    --secondary-color: #6c757d; /* Abu-abu sekunder */
+    --accent-color: #28a745; /* Hijau, untuk aksi/pembacaan */
+    --text-color: #343a40; /* Teks gelap */
+    --bg-light: #f8f9fa; /* Latar belakang terang */
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.main-nav li a:hover,
+.main-nav li a.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.nav-toggle {
+    display: none; /* Sembunyikan di desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-color);
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* --- KONTEN UTAMA --- */
+.main-content {
+    padding: 30px 15px;
+}
+
+/* HERO SECTION */
+.hero-section {
+    margin-bottom: 40px;
+}
+
+.featured-post {
+    display: flex;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.featured-post img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.featured-post .post-info {
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-post h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.category {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    align-self: flex-start;
+}
+
+/* LAYOUT KONTEN DAN SIDEBAR */
+.content-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 untuk berita, 1/3 untuk sidebar */
+    gap: 30px;
+}
+
+/* BERITA TERBARU */
+.latest-news h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 10px;
+}
+
+.news-card {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+}
+
+.news-card img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.news-card h4 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.summary {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+/* SIDEBAR */
+.sidebar {
+    background-color: var(--bg-light);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-widget {
+    margin-bottom: 30px;
+}
+
+.sidebar-widget h4 {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.sidebar-widget ul {
+    list-style: none;
+}
+
+.sidebar-widget li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.sidebar-widget li a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.newsletter input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--text-color);
+    color: white;
+    padding: 40px 0 20px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #495057;
+}
+
+.footer-grid h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.footer-grid p {
+    font-size: 0.9em;
+    color: #ced4da;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: #ced4da;
+    display: block;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.footer-links li a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+    color: #ced4da;
+}
+
+/* RESPONSIVE DESIGN (Mobile) */
+@media (max-width: 768px) {
+    
+    .main-header .container {
+        padding: 10px 15px;
+    }
+
+    /* Navigasi Mobile */
+    .main-nav {
+        position: absolute;
+        top: 60px; /* Di bawah header */
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+    }
+
+    .main-nav li a {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        display: block;
+    }
+
+    .nav-toggle {
+        display: block; /* Tampilkan tombol di mobile */
+    }
+
+    /* Konten Utama */
+    .featured-post {
+        flex-direction: column;
+    }
+
+    .featured-post img,
+    .featured-post .post-info {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .featured-post h2 {
+        font-size: 1.5em;
+    }
+
+    .content-layout {
+        grid-template-columns: 1fr; /* Satu kolom */
+    }
+
+    .news-card {
+        flex-direction: column;
+    }
+
+    .news-card img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-links ul {
+        padding: 0;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo">PortalKU</h1>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#teknologi">Teknologi</a></li>
+                    <li><a href="#bisnis">Bisnis</a></li>
+                    <li><a href="#gaya-hidup">Gaya Hidup</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content container">
+
+        <section class="hero-section">
+            <article class="featured-post">
+                <img src="https://via.placeholder.com/900x400/007bff/ffffff?text=Berita+Utama+Hari+Ini" alt="Berita Utama">
+                <div class="post-info">
+                    <span class="category">TEKNOLOGI</span>
+                    <h2>Menjelajahi Masa Depan AI: Revolusi di Setiap Industri</h2>
+                    <p>Para ahli memprediksi bahwa adopsi Kecerdasan Buatan akan mencapai puncaknya tahun ini...</p>
+                    <a href="#" class="read-more">Baca Selengkapnya &rarr;</a>
+                </div>
+            </article>
+        </section>
+
+        <div class="content-layout">
+            
+            <div class="latest-news">
+                <h3>Berita Terbaru</h3>
+                <article class="news-card">
+                    <img src="https://via.placeholder.com/300x200/28a745/ffffff?text=Gaya+Hidup+Sehat" alt="Berita Card 1">
+                    <div class="card-content">
+                        <span class="category">GAYA HIDUP</span>
+                        <h4>5 Cara Efektif Menjaga Kesehatan Mental di Era Digital</h4>
+                        <p class="summary">Tips praktis untuk mengatasi stres dan kecemasan saat terus terhubung secara online.</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="https://via.placeholder.com/300x200/ffc107/343a40?text=Inovasi+Bisnis" alt="Berita Card 2">
+                    <div class="card-content">
+                        <span class="category">BISNIS</span>
+                        <h4>Start-up Lokal Raih Pendanaan Seri B $10 Juta</h4>
+                        <p class="summary">Inovasi di sektor FinTech menarik perhatian investor global.</p>
+                    </div>
+                </article>
+                </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h4>Paling Populer</h4>
+                    <ul>
+                        <li><a href="#">1. Mengapa Desain Minimalis Kembali Populer</a></li>
+                        <li><a href="#">2. Analisis Pasar Kripto Minggu Ini</a></li>
+                        <li><a href="#">3. Resep Makanan Sehat 15 Menit</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-widget newsletter">
+                    <h4>Daftar Newsletter</h4>
+                    <p>Dapatkan update berita langsung ke email Anda!</p>
+                    <form>
+                        <input type="email" placeholder="Masukkan email Anda" required>
+                        <button type="submit" class="btn-primary">Daftar</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>PortalKU</h3>
+                    <p>Sumber terpercaya untuk berita terbaru dan terkurasi seputar Teknologi, Bisnis, dan Gaya Hidup.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat Penggunaan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">F</a>
+                        <a href="#" aria-label="Twitter">T</a>
+                        <a href="#" aria-label="Instagram">I</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PortalKU. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    // Fungsionalitas Toggle Menu untuk Mobile
+    if (navToggle && mainNav) {
+        navToggle.addEventListener('click', function() {
+            // Toggle class 'active' pada navigasi
+            mainNav.classList.toggle('active');
+            
+            // Mengubah ikon toggle (opsional, bisa dihandle murni di CSS)
+            if (mainNav.classList.contains('active')) {
+                navToggle.setAttribute('aria-expanded', 'true');
+            } else {
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Opsi: Menutup menu ketika link diklik (Berguna pada Single Page)
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                 mainNav.classList.remove('active');
+                 navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    // Anda bisa menambahkan fungsionalitas lain di sini, seperti:
+    // 1. Validasi formulir Newsletter.
+    // 2. Load konten berita dinamis (jika menggunakan API).
+});
+    </script>
+</body>
+</html>
